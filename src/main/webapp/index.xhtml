@@ -1,0 +1,117 @@
+<html  xmlns="http://www.w3.org/1999/xhtml"   
+       xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:f="http://java.sun.com/jsf/core" 
+       xmlns:ui="http://java.sun.com/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui">
+<h:head>
+  <title> Todo List</title>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="resources/css/index.css" />	
+</h:head>
+ 
+<h:body>
+
+<section class="todoapp">
+	<h1>todos</h1>
+	<h:form id="taskForm">
+		<p:panelGrid  style="margin-top:200px" styleClass="ui-noborder ui-fluid">
+			<p:row>		
+				<p:column>
+					<p:selectBooleanCheckbox value="#{taskFormMB.selectAll}" style="width:20px; text-align: center;" />
+				</p:column>
+				<p:column>
+					<p:inputText id="name" value="#{taskFormMB.task.name}" styleClass="new-todo" size="60" >
+						<f:passThroughAttribute name="placeholder" value="What need to be done?"  />
+					</p:inputText> 
+				</p:column>	
+				<p:column  style="text-align: right">
+					<p:commandButton value="Add" action="#{taskFormMB.save}" update="taskForm" />
+				</p:column> 
+			</p:row>
+		</p:panelGrid>
+			 
+		<p:growl id="messages" showDetail="true" />
+			 
+		<p:dataTable id="table" 
+					 var="task" 
+					 editable="true" 
+					 editMode="cell"
+					 reflow="true"
+					 value="#{taskFormMB.taskList}" 
+					 styleClass="table">
+
+			<p:ajax event="cellEdit" 
+					listener="#{taskFormMB.onCellEdit}"
+					update=":taskForm:messages" />
+
+			<p:column style="width:50px; text-align: center; " >
+			    <p:selectBooleanCheckbox value="#{task.completed}" />
+			</p:column>
+
+			<p:column style="text-align: left; text-align: left;">
+				<p:cellEditor>
+					<f:facet name="output"> <h:outputText value="#{task.name}" /> </f:facet>
+					<f:facet name="input"> <p:inputText id="name" value="#{task.name}" style="width:100%" label="Name" /> </f:facet>
+				</p:cellEditor>
+			</p:column>
+
+			<p:column style="width:50px; text-align: center;">
+				<p:commandLink action="#{taskFormMB.remove(task)}" 
+				               update="taskForm">X</p:commandLink>
+			</p:column>
+
+		</p:dataTable>
+		<p:panelGrid  style="margin-top:0px" styleClass="ui-noborder" 
+		      		  rendered="#{taskFormMB.totalActive > 1 }" >
+	        
+	        	<p:column  style="text-align: right">
+                	<p:outputLabel value="#{taskFormMB.totalActive} items left" />
+               	</p:column>
+               	<p:column>
+               		<p:commandLink action="#{taskFormMB.findAll}" 
+               					   style="border: 1px solid; color: inherit; padding:3px;" 
+               					   update="taskForm" >All</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink action="#{taskFormMB.findActive}" 
+								   style="border: 1px solid; color: inherit; padding:3px;" 
+								   update="taskForm">Active</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink action="#{taskFormMB.findCompleted}" 
+					 			   style="border: 1px solid; color: inherit; padding:3px;"  
+					 			   update="taskForm">Completed</p:commandLink>
+				</p:column>
+				<p:column>
+					<p:commandLink rendered="#{taskFormMB.totalCompleted > 1 }" 
+					               action="#{taskFormMB.removeCompleted}" 
+					               style="border: 1px solid; color: inherit; padding:3px;"  
+					               update="taskForm">Clear Completed</p:commandLink>
+				</p:column>	
+	         
+		</p:panelGrid> 
+	</h:form> 
+</section>	
+<footer class="info">
+	<p>Double-click to edit a todo</p>
+</footer>
+
+</h:body>
+</html>	
+		
+		
+	 
+
+	
+							
+						
+		 
+						
+						
+						
+							 
+
+		
+
+
