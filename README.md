@@ -1,8 +1,6 @@
 #  ToDo List 
 
-## About 
-
-Orientações do Desafio ESIG 
+## Orientações do Desafio ESIG 
 
 Candidato: Antonio Sergio Ferreira Pacheco 
 Telefone: (84) 99184-5336 
