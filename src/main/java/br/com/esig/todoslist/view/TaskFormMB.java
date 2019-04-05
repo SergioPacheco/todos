@@ -1,4 +1,4 @@
-package br.com.esig.todoslist.bean;
+package br.com.esig.todoslist.view;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -10,7 +10,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.omnifaces.util.Faces;
 import org.primefaces.event.CellEditEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -59,7 +58,7 @@ public class TaskFormMB implements Serializable {
 		totalActive =  taskRepository.findByCompletedFalse().size(); 
 		return totalActive;
 	}
-
+				 
 	public int getTotalCompleted() {
 		totalCompleted=  taskRepository.findByCompletedTrue().size(); 
 		return totalCompleted;
@@ -68,23 +67,22 @@ public class TaskFormMB implements Serializable {
 	public boolean getSelectAll() {
 		return selectAll;
 	}
-
-	public void setSelectAll(boolean selectAll) {
-		this.selectAll = selectAll;
-	}
-
-	
-	
+	 
 	public void save() throws IOException {
-		try {
-			taskRepository.save(task);
-			taskList.add(task);
-			task = new Task();
-		} catch (Exception e) {
-			Utils.addDetailMessage("Error when saving.");
+		if (!task.getName().isEmpty()) {
+			System.out.println(task.toString());
+			if (task.getId() == null) {
+				task.setCompleted(false);
+			}
+			try {
+				taskRepository.save(task);
+				taskList.add(task);
+				task = new Task();
+			} catch (Exception e) {
+				Utils.addDetailMessage("Error when saving.");
+			}
+			findAll();
 		}
-		Faces.redirect("index.jsf");
-			 
 	}
 	
 	public void edit(CellEditEvent event) {
@@ -94,20 +92,14 @@ public class TaskFormMB implements Serializable {
 		if (newValue != null && !newValue.equals(oldValue)) {
 			Task task = context.getApplication().evaluateExpressionGet(context, "#{task}", Task.class);
 			taskRepository.save(task);
-			Utils.addDetailMessage("Successful Change Task.");
 		}
 	}
 
 	public void updateTotals(Task task) {
 		try {
-			if (task.getCompleted())
-				task.setCompleted(false); 
-			else
-				task.setCompleted(true);  
-
+			task.setCompleted(task.getCompleted() ? false : true);
 			taskRepository.save(task);
-			totalActive = taskRepository.findByCompletedFalse().size();
-			totalCompleted = taskRepository.findByCompletedTrue().size();
+			findAll();
 
 		} catch (Exception e) {
 			Utils.addDetailMessage("Error when change task.", FacesMessage.SEVERITY_ERROR);
@@ -127,20 +119,30 @@ public class TaskFormMB implements Serializable {
 	public void removeCompleted() {
 		try {
 			List<Task> completed = taskRepository.findByCompletedTrue();
-
 			for (Task task : completed) {
 				taskRepository.delete(task);
 			}
-			taskList = taskRepository.findAll();
+			findAll();
 		} catch (Exception e) {
 			Utils.addDetailMessage("Error when delete completed task.", FacesMessage.SEVERITY_ERROR);
 		}
 	}
+	
+	public void select() {
+		try {
+			for (Task task : taskList) {
+				task.setCompleted(selectAll);
+				taskRepository.save(task);
+			}
+			findAll();
+		} catch (Exception e) {
+			Utils.addDetailMessage("Error when select all tasks.", FacesMessage.SEVERITY_ERROR);
+		}
+		selectAll = selectAll ? false : true;
+	}
+	 
 
 	public void findAll() {
-		totalActive = 0;
-		totalCompleted = 0;
-		total = 0;
 		try {
 			taskList = taskRepository.findAll();
 			total = taskList.size();

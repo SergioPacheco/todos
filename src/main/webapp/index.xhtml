@@ -15,19 +15,24 @@
 <section class="todoapp">
 	<h1>todos</h1>
 	<h:form id="taskForm">
-		<p:panelGrid  style="margin-top:200px" styleClass="ui-noborder ui-fluid">
+		<p:panelGrid  style="margin-top:150px" styleClass="ui-noborder ui-fluid">
 			<p:row>		
+				<p:column>				  
+					<p:commandLink action="#{taskFormMB.select()}" update="taskForm">
+						<h:graphicImage rendered="#{taskFormMB.selectAll eq false}"  
+						                value="resources/images/icon-arrow-up.png" />	
+						<h:graphicImage rendered="#{taskFormMB.selectAll eq true}"  
+						                value="resources/images/icon-arrow-down.png" />	                
+					</p:commandLink>	   
+				</p:column>             
 				<p:column>
-					<p:selectBooleanCheckbox value="#{taskFormMB.selectAll}" style="width:20px; text-align: center;" />
-				</p:column>
-				<p:column>
-					<p:inputText id="name" value="#{taskFormMB.task.name}" styleClass="new-todo" size="60" >
+					<p:inputText id="name" value="#{taskFormMB.task.name}" styleClass="new-todo edit" size="60" >
 						<f:passThroughAttribute name="placeholder" value="What need to be done?"  />
 					</p:inputText> 
 				</p:column>	
 				<p:column  style="text-align: right">
-					<p:commandButton value="Add" action="#{taskFormMB.save}" update="taskForm" />
-				</p:column> 
+					<p:commandButton value="Add" action="#{taskFormMB.save()}" update="taskForm" />
+				</p:column>
 			</p:row>
 		</p:panelGrid>
 			 
@@ -35,58 +40,67 @@
 			 
 		<p:dataTable id="table" 
 					 var="task" 
+					 value="#{taskFormMB.taskList}" 
 					 editable="true" 
 					 editMode="cell"
 					 reflow="true"
-					 value="#{taskFormMB.taskList}" 
 					 styleClass="table">
 
 			<p:ajax event="cellEdit" 
-					listener="#{taskFormMB.onCellEdit}"
-					update=":taskForm:messages" />
+					listener="#{taskFormMB.edit}"
+					update="taskForm:table" />
 
-			<p:column style="width:50px; text-align: center; " >
-			    <p:selectBooleanCheckbox value="#{task.completed}" />
+			<p:column style="width:50px">
+				<p:commandLink action="#{taskFormMB.updateTotals(task)}" update="taskForm">
+					<h:graphicImage rendered="#{task.completed eq false}"  
+					                value="resources/images/icon-uncheck.png" />		   
+					<h:graphicImage rendered="#{task.completed eq true}"  
+					                value="resources/images/icon-check.png" />		   
+				</p:commandLink>
 			</p:column>
 
 			<p:column style="text-align: left; text-align: left;">
 				<p:cellEditor>
-					<f:facet name="output"> <h:outputText value="#{task.name}" /> </f:facet>
-					<f:facet name="input"> <p:inputText id="name" value="#{task.name}" style="width:100%" label="Name" /> </f:facet>
+					<f:facet name="output"> <p:outputLabel value="#{task.name}" /> </f:facet>
+					<f:facet name="input">  
+						<p:inputText id="name" value="#{task.name}" style="width:100%" label="Name" /> </f:facet>
 				</p:cellEditor>
 			</p:column>
-
-			<p:column style="width:50px; text-align: center;">
-				<p:commandLink action="#{taskFormMB.remove(task)}" 
-				               update="taskForm">X</p:commandLink>
-			</p:column>
+			<p:column style="width:50px; text-align: center;">				  
+				<p:commandLink action="#{taskFormMB.remove(task)}" update="taskForm">
+					<h:graphicImage value="resources/images/icon-x.png" />	
+				</p:commandLink>	   
+			</p:column> 
+			
+			
 
 		</p:dataTable>
-		<p:panelGrid  style="margin-top:0px" styleClass="ui-noborder" 
-		      		  rendered="#{taskFormMB.totalActive > 1 }" >
+		<p:panelGrid  style="margin-top:0px" 
+				      styleClass="ui-noborder ui-fluid" 
+		      		  rendered="#{taskFormMB.total > 1 }" >
 	        
 	        	<p:column  style="text-align: right">
                 	<p:outputLabel value="#{taskFormMB.totalActive} items left" />
                	</p:column>
                	<p:column>
                		<p:commandLink action="#{taskFormMB.findAll}" 
-               					   style="border: 1px solid; color: inherit; padding:3px;" 
-               					   update="taskForm" >All</p:commandLink>
+               					   style="border: 1px solid; color: inherit; padding:5px;" 
+               					   update="taskForm" >All #{taskFormMB.total}</p:commandLink>
 				</p:column>
 				<p:column>
 					<p:commandLink action="#{taskFormMB.findActive}" 
-								   style="border: 1px solid; color: inherit; padding:3px;" 
-								   update="taskForm">Active</p:commandLink>
+								   style="border: 1px solid; color: inherit; padding:5px;" 
+								   update="taskForm">Active #{taskFormMB.totalActive}</p:commandLink>
 				</p:column>
 				<p:column>
 					<p:commandLink action="#{taskFormMB.findCompleted}" 
-					 			   style="border: 1px solid; color: inherit; padding:3px;"  
-					 			   update="taskForm">Completed</p:commandLink>
+					 			   style="border: 1px solid; color: inherit; padding:5px;"  
+					 			   update="taskForm">Completed #{taskFormMB.totalCompleted}</p:commandLink>
 				</p:column>
 				<p:column>
-					<p:commandLink rendered="#{taskFormMB.totalCompleted > 1 }" 
+					<p:commandLink rendered="#{taskFormMB.totalCompleted > 0 }" 
 					               action="#{taskFormMB.removeCompleted}" 
-					               style="border: 1px solid; color: inherit; padding:3px;"  
+					               style="border: 1px solid; color: inherit; padding:5px;"  
 					               update="taskForm">Clear Completed</p:commandLink>
 				</p:column>	
 	         
@@ -99,7 +113,6 @@
 
 </h:body>
 </html>	
-		
 		
 	 
 

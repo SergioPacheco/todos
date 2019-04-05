@@ -85,7 +85,7 @@ body {
 	position: relative;
 	margin: 0;
 	width: 100%;
-	font-size: 24px;
+	font-size: 24px !important;
 	font-family: inherit;
 	font-weight: inherit;
 	line-height: 1.4em;
@@ -402,12 +402,21 @@ html .clear-completed:active {
 	padding: 0;
 }
 
+
+
 .ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
     text-align: center;
  }
- .filter {
+
+.filter {
  	background-color: #fff; border-color: #ffcccc;
- } 
+} 
  
- 
+.ui-datatable-emptymessage {
+    display:none;
+} 
+
+.ui-datatable-empty-message {
+	display:none;
+}
 
