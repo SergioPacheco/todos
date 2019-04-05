@@ -1,21 +1,17 @@
 #  ToDo List 
 
-## About 
-
-Orientações do Desafio ESIG 
+## Orientações do Desafio ESIG 
 
 Candidato: Antonio Sergio Ferreira Pacheco 
 Telefone: (84) 99184-5336 
 
 Os itens **A,B,C,D,E,F** foram implementados
 
-Foi implementado usando ** JSF **, ** Spring Framework Boot 2.0 **, ** PrimeFaces **, ** BootStrap 4 **, ** Spring Data JPA ** e ** Spring Data REST **  
-Banco de dados está na memória ** MySql **.
+Foi o projeto foi implementado usando **JSF**, **Spring Framework Boot 2.0**, **PrimeFaces**, **BootStrap 4 **, **Spring Data JPA** e **Spring Data REST**  
+Banco de dados **MySql**.
 
 
 #### Usando um JAR executável 
-
-#### Usando o JAR executável
 
 Para execução de um JAR:
 
