@@ -13,8 +13,6 @@ Banco de dados **MySql**.
 
 #### Usando um JAR executável 
 
-#### Usando o JAR executável
-
 Para execução de um JAR:
 
 ```bash
