@@ -29,7 +29,7 @@ public class ApiRestController {
 	@Autowired
 	private TaskRepository taskRepository;
 
-	@ApiOperation(value = "List all Todos", notes = "List all ToDos", response = Rating.class, responseContainer = "List" )
+	@ApiOperation(value = "List all Todos", notes = "List all ToDos", response = Task.class, responseContainer = "List" )
 	@ApiResponses(value = { 
 			@ApiResponse(code = 200, message = "Successfully retrieved ToDo list"),
 			@ApiResponse(code = 401, message = "You are not authorized to view the resource"),
@@ -41,7 +41,7 @@ public class ApiRestController {
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@ApiOperation(value = "Add an Task", notes = "Add an Task", response = Rating.class )
+	@ApiOperation(value = "Add an Task", notes = "Add an Task", response = Task.class )
 	@ApiResponses({
         @ApiResponse(code = 201, message = "Task Successfuly inserted")
     })
