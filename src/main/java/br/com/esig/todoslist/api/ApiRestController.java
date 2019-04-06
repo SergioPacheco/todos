@@ -41,7 +41,7 @@ public class ApiRestController {
 	}
 
 	@ResponseStatus(HttpStatus.CREATED)
-	@ApiOperation(value = "Add an Task", notes = "Add an Task", response = Task.class )
+	@ApiOperation(value = "Add an Task", notes = "Add new Task", response = Task.class )
 	@ApiResponses({
         @ApiResponse(code = 201, message = "Task Successfuly inserted")
     })

@@ -38,7 +38,6 @@ public class SwaggerConfig {
                 .description ("This is API for ToDo List.")
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")
-                .termsOfServiceUrl("/service.html")
                 .version("1.0.0")
                 .build();
  
