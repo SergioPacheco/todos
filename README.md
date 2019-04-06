@@ -12,7 +12,6 @@ O app foi publicado do Heroku [Click Aqui](https://todosesig.herokuapp.com/index
 
 #### JAR executável 
 
-Para execução do JAR:
 
 ```bash
 $ mvn clean package
