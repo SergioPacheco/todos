@@ -1,6 +1,6 @@
 #  ToDo List - Desafio ESIG 
 
-Os itens **A, B, C, D, E, F, G ** foram implementados
+Os itens **A, B, C, D, E, F, G, I ** foram implementados
 
 Foi o projeto foi implementado usando **JSF**, **Spring Framework Boot 2.0**, **PrimeFaces**, **BootStrap 4 **, **Spring Data JPA** e **Spring Data REST**  
 Banco de dados **MySql**.
@@ -20,10 +20,12 @@ $ java -jar target/todoslist-0.0.1-SNAPSHOT.jar
 ```
 
 
-## Tests
+## Testes
 
 Os testes podem ser executados executando a partir da raiz do projeto:
 
 ```bash
 $ mvn test
+
+
 
