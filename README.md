@@ -32,6 +32,8 @@ $ mvn test
 
 ## Documentação API REST
 
+[Swagger](https://todosesig.herokuapp.com/swagger-ui.html#/api-rest-controller)
+
 ![](todos-swagger.png)
 
 
