@@ -402,8 +402,6 @@ html .clear-completed:active {
 	padding: 0;
 }
 
-
-
 .ui-panelgrid .ui-grid-responsive .ui-panelgrid-cell {
     text-align: center;
  }
@@ -418,5 +416,9 @@ html .clear-completed:active {
 
 .ui-datatable-empty-message {
 	display:none;
+}
+
+div[id="taskForm:table"] thead {
+    display:none;
 }
 
