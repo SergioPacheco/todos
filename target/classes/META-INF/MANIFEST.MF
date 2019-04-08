@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: sergio
+Build-Jdk: 11.0.1
+Implementation-Title: todoslist
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: br.com.esig
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/todoslist
+Created-By: Maven Integration for Eclipse
+

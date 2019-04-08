@@ -27,11 +27,13 @@ public class SwaggerConfig {
           .build();
     }
     
-    private Predicate<RequestHandler> apis() {
+    @SuppressWarnings("unused")
+	private Predicate<RequestHandler> apis() {
         return RequestHandlerSelectors.basePackage("br.com.esig.todoslist");
     }
     
-    private ApiInfo apiInfo() {
+    @SuppressWarnings("unused")
+	private ApiInfo apiInfo() {
     	 
         ApiInfo apiInfo = new ApiInfoBuilder()
                 .title ("API ToDo List")

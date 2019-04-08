@@ -1,8 +1,8 @@
 br/com/esig/todoslist/config/SwaggerConfig.class
-br/com/esig/todoslist/TodoListApplication.class
 br/com/esig/todoslist/repository/TaskRepository.class
+br/com/esig/todoslist/service/TodosService.class
+br/com/esig/todoslist/TodoListApplication.class
 br/com/esig/todoslist/model/Task.class
 br/com/esig/todoslist/utils/Utils.class
 br/com/esig/todoslist/view/TaskFormMB.class
 br/com/esig/todoslist/api/ApiRestController.class
-br/com/esig/todoslist/service/TodosService.class
