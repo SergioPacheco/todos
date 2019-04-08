@@ -1,24 +1,18 @@
 package br.com.esig.todoslist.utils;
 
 import java.io.Serializable;
-import java.util.List;
 
-import javax.annotation.PostConstruct;
-import javax.enterprise.inject.Produces;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import br.com.esig.todoslist.model.Task;
-import br.com.esig.todoslist.repository.TaskRepository;
-
 @Named
 @ApplicationScoped
 public class Utils implements Serializable {
 	
+	private static final long serialVersionUID = -6112066850581836066L;
+
 	public static void addDetailMessage(String message) {
         addDetailMessage(message, null);
     }

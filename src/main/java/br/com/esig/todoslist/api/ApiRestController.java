@@ -2,7 +2,6 @@ package br.com.esig.todoslist.api;
 
 import java.util.List;
 
-import org.primefaces.component.rating.Rating;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -57,7 +56,7 @@ public class ApiRestController {
     })
 	@DeleteMapping("{id}")
 	public void deleteTask(@PathVariable("id") Long id) {
-		taskRepository.delete(id);
+		taskRepository.deleteById(id);
 	}
 	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
@@ -67,7 +66,7 @@ public class ApiRestController {
     })
 	@PutMapping("{id}")
 	public void updateTask(@PathVariable("id") Long id, @RequestBody Task task) {
-		taskRepository.delete(id);
+		taskRepository.deleteById(id);
 	}
 	
 	@ResponseStatus(HttpStatus.OK)
