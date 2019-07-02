@@ -2,7 +2,7 @@
 
 Os itens **A, B, C, D, E, F, G, I ** foram implementados
 
-Foi o projeto foi implementado usando **JSF**, **Spring Framework Boot 2.0**, **PrimeFaces**, **BootStrap 4 **, **Spring Data JPA** e **Spring Data REST** e Banco de dados **MySql**.
+Foi o projeto foi implementado usando **JSF**, **Spring Framework Boot 2.0**, **PrimeFaces**, **BootStrap 4**, **Spring Data JPA** e **Spring Data REST** e Banco de dados **MySql**.
 
 O app foi publicado do Heroku [Click Aqui](https://todosesig.herokuapp.com)
 
